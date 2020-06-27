@@ -6,6 +6,7 @@
 
 ### 1. PriorityQueue的主要属性：
 
+```java
 //数组的默认初始化长度
 private static final int DEFAULT_INITIAL_CAPACITY = 11;
 
@@ -20,6 +21,9 @@ private final Comparator<? super E> comparator;
 
 //PriorityQueue被结构化调整的次数
 transient int modCount = 0;
+```
+
+
 
 ### 2. PriorityQueue的Constructor：
 
@@ -30,21 +34,21 @@ transient int modCount = 0;
 
 ```java
 private void grow(int minCapacity) {
-		int oldCapacity = queue.length;
-		// Double size if small; else grow by 50%
-		// 如果oldCapacity < 64，扩大为原来的2倍，否则扩大原来的一半
-		int newCapacity = oldCapacity + ((oldCapacity < 64) ? (oldCapacity + 2) : (oldCapacity >> 1));
-		// overflow-conscious code
-		// 如果newCapacity超过了最大值MAX_ARRAY_SIZE，则调用hugeCapacity方法
-		if (newCapacity - MAX_ARRAY_SIZE > 0)
-		newCapacity = hugeCapacity(minCapacity);
-		queue = Arrays.copyOf(queue, newCapacity);
+    int oldCapacity = queue.length;
+    // Double size if small; else grow by 50%
+    // 如果oldCapacity < 64，扩大为原来的2倍，否则扩大原来的一半
+    int newCapacity = oldCapacity + ((oldCapacity < 64) ? (oldCapacity + 2) : (oldCapacity >> 1));
+    // overflow-conscious code
+    // 如果newCapacity超过了最大值MAX_ARRAY_SIZE，则调用hugeCapacity方法
+    if (newCapacity - MAX_ARRAY_SIZE > 0)
+    newCapacity = hugeCapacity(minCapacity);
+    queue = Arrays.copyOf(queue, newCapacity);
 }
 private static int hugeCapacity(int minCapacity) {
-		if (minCapacity < 0) // overflow,如果minCapacity overflow则抛出异常。
-				throw new OutOfMemoryError();
-		// 根据情况返回Integer.MAX_VALUE或MAX_ARRAY_SIZE
-		return (minCapacity > MAX_ARRAY_SIZE) ? Integer.MAX_VALUE : MAX_ARRAY_SIZE;
+    if (minCapacity < 0) // overflow,如果minCapacity overflow则抛出异常。
+        throw new OutOfMemoryError();
+    // 根据情况返回Integer.MAX_VALUE或MAX_ARRAY_SIZE
+    return (minCapacity > MAX_ARRAY_SIZE) ? Integer.MAX_VALUE : MAX_ARRAY_SIZE;
 }
 ```
 
@@ -56,36 +60,36 @@ private static int hugeCapacity(int minCapacity) {
 
 ```java
 public boolean add(E e) {
-		return offer(e);
+    return offer(e);
 }
 
 public boolean offer(E e) {
-		if (e == null)
-				throw new NullPointerException();
-		modCount++;
-		int i = size;
-		// 如果需要扩容，则调用grow()。
-		if (i >= queue.length)
-				grow(i + 1);
-		size = i + 1;
-		// 如果此前size为0，则说明原本没有element，所以新插入的element会放在顶堆，不需要调整。
-		if (i == 0)
-				queue[0] = e;
-		else
-		// 否则调用sifitUp()方法，将新element插入queue[i]，然后调整PriorityQueue，上浮插入元素。
-				siftUp(i, e);
-		return true;
+    if (e == null)
+        throw new NullPointerException();
+    modCount++;
+    int i = size;
+    // 如果需要扩容，则调用grow()。
+    if (i >= queue.length)
+        grow(i + 1);
+    size = i + 1;
+    // 如果此前size为0，则说明原本没有element，所以新插入的element会放在顶堆，不需要调整。
+    if (i == 0)
+        queue[0] = e;
+    else
+    // 否则调用sifitUp()方法，将新element插入queue[i]，然后调整PriorityQueue，上浮插入元素。
+        siftUp(i, e);
+    return true;
 }
 
 private void siftUp(int k, E x) {
-		// 如果comparator不为空，则使用comparator进行调整，否则用element实现的comparable接口进行调整
+    // 如果comparator不为空，则使用comparator进行调整，否则用element实现的comparable接口进行调整
     if (comparator != null)
         siftUpUsingComparator(k, x);
     else
         siftUpComparable(k, x);
 }
 
-	//用element实现的comparable接口进行上浮
+//用element实现的comparable接口进行上浮
 private void siftUpComparable(int k, E x) {
 			// 此时k为PriorityQueue的尾端
     Comparable<? super E> key = (Comparable<? super E>) x;
@@ -130,7 +134,7 @@ private void siftUpUsingComparator(int k, E x) {
 
 ```java
 private void initFromCollection(Collection<? extends E> c) {
-			// 提取Collection中的元素
+    // 提取Collection中的元素
     initElementsFromCollection(c);
     // 对PriorityQueue进行调整
     heapify();
@@ -155,7 +159,7 @@ private void initElementsFromCollection(Collection<? extends E> c) {
 //整体调整PriorityQueue
 @SuppressWarnings("unchecked")
 private void heapify() {
-		// 从底往上，对每个有自节点对元素进行下沉操作。
+    // 从底往上，对每个有自节点对元素进行下沉操作。
     for (int i = (size >>> 1) - 1; i >= 0; i--)
         siftDown(i, (E) queue[i]);
 }
