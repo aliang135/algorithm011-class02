@@ -1,6 +1,111 @@
-## 学习笔记: 
+# Week01学习笔记：
 
+## 学习总结: 
 
+本周是算法训练营的第一周，主要讲解了算法的学习方法，包括Leetcode的使用方法和刷题技巧，还有一些常见的数据结构，如数组，链表，跳表，栈，队列，优先队列，双端队列等。
+
+### 刷题方法：
+
+每道题要过变数，五毒神掌，至少要刷5遍。
+
+做题时要认真审题，思考全部解决方法，分析时间和空间复杂度。如果10分钟还想不出结果，直接看答案，参考别人的阶梯方法。然后写代码。最后寻求反馈，看自己的解题方法和别人的却别在哪里，还要去国际站看高评分的解题。
+
+### 数据结构：
+
+1. 数组(Array)是顺序存储，查询的时间复杂度为O(1)，插入和删除掉时间复杂度为O(n)；
+
+2. 链表(linked list)是非顺序存储，查询的时间复杂度为O(n)，插入和删除的时间复杂度为O(1)；
+
+3. 跳表(skip list)里的元素必须是有序的，查询，插入，删除的时间复杂度都为O(logn)。Redis和LevelDB都是用的跳表。
+
+4. 栈(Stack)是一种后进先出(LIFO)的数据结构，查询的时间复杂度为O(n)，插入和删除的时间复杂度为O(1)。
+
+   Stack的主要methods包括：
+
+   | Modifier and Type | Method and Description                                       |
+   | :---------------- | :----------------------------------------------------------- |
+   | `boolean`         | `empty()`Tests if this stack is empty.                       |
+   | `E`               | `peek()`Looks at the object at the top of this stack without removing it from the stack. |
+   | `E`               | `pop()`Removes the object at the top of this stack and returns that object as the value of this function. |
+   | `E`               | `push(E item)`Pushes an item onto the top of this stack.     |
+   | `int`             | `search(Object o)`Returns the 1-based position where an object is on this stack. |
+
+5. 队列(Queue)是一种先进先出(FIFO)的数据结构。查找的时间复杂度为O(n),增加删除的时间复杂度为O(1)。
+
+   Queue的主要methods包括：
+
+   | Modifier and Type | Method and Description                                       |
+   | :---------------- | :----------------------------------------------------------- |
+   | `boolean`         | `add(E e)`Inserts the specified element into this queue if it is possible to do so immediately without violating capacity restrictions, returning `true` upon success and throwing an `IllegalStateException` if no space is currently available. |
+   | `E`               | `element()`Retrieves, but does not remove, the head of this queue. |
+   | `boolean`         | `offer(E e)`Inserts the specified element into this queue if it is possible to do so immediately without violating capacity restrictions. |
+   | `E`               | `peek()`Retrieves, but does not remove, the head of this queue, or returns `null` if this queue is empty. |
+   | `E`               | `poll()`Retrieves and removes the head of this queue, or returns `null` if this queue is empty. |
+   | `E`               | `remove()`Retrieves and removes the head of this queue.      |
+
+6. 双端队列(Deque)在实际工程中使用最多，查找的时间复杂度为O(n),增加删除的时间复杂度为O(1)。
+
+   Deque的主要methods包括：
+
+   | Modifier and Type | Method and Description                                       |
+   | :---------------- | :----------------------------------------------------------- |
+   | `boolean`         | `add(E e)`Inserts the specified element into the queue represented by this deque (in other words, at the tail of this deque) if it is possible to do so immediately without violating capacity restrictions, returning `true` upon success and throwing an`IllegalStateException` if no space is currently available. |
+   | `void`            | `addFirst(E e)`Inserts the specified element at the front of this deque if it is possible to do so immediately without violating capacity restrictions, throwing an `IllegalStateException` if no space is currently available. |
+   | `void`            | `addLast(E e)`Inserts the specified element at the end of this deque if it is possible to do so immediately without violating capacity restrictions, throwing an `IllegalStateException` if no space is currently available. |
+   | `boolean`         | `contains(Object o)`Returns `true` if this deque contains the specified element. |
+   | `Iterator<E>`     | `descendingIterator()`Returns an iterator over the elements in this deque in reverse sequential order. |
+   | `E`               | `element()`Retrieves, but does not remove, the head of the queue represented by this deque (in other words, the first element of this deque). |
+   | `E`               | `getFirst()`Retrieves, but does not remove, the first element of this deque. |
+   | `E`               | `getLast()`Retrieves, but does not remove, the last element of this deque. |
+   | `Iterator<E>`     | `iterator()`Returns an iterator over the elements in this deque in proper sequence. |
+   | `boolean`         | `offer(E e)`Inserts the specified element into the queue represented by this deque (in other words, at the tail of this deque) if it is possible to do so immediately without violating capacity restrictions, returning `true` upon success and `false` if no space is currently available. |
+   | `boolean`         | `offerFirst(E e)`Inserts the specified element at the front of this deque unless it would violate capacity restrictions. |
+   | `boolean`         | `offerLast(E e)`Inserts the specified element at the end of this deque unless it would violate capacity restrictions. |
+   | `E`               | `peek()`Retrieves, but does not remove, the head of the queue represented by this deque (in other words, the first element of this deque), or returns `null` if this deque is empty. |
+   | `E`               | `peekFirst()`Retrieves, but does not remove, the first element of this deque, or returns `null` if this deque is empty. |
+   | `E`               | `peekLast()`Retrieves, but does not remove, the last element of this deque, or returns `null` if this deque is empty. |
+   | `E`               | `poll()`Retrieves and removes the head of the queue represented by this deque (in other words, the first element of this deque), or returns `null` if this deque is empty. |
+   | `E`               | `pollFirst()`Retrieves and removes the first element of this deque, or returns `null` if this deque is empty. |
+   | `E`               | `pollLast()`Retrieves and removes the last element of this deque, or returns `null` if this deque is empty. |
+   | `E`               | `pop()`Pops an element from the stack represented by this deque. |
+   | `void`            | `push(E e)`Pushes an element onto the stack represented by this deque (in other words, at the head of this deque) if it is possible to do so immediately without violating capacity restrictions, throwing an `IllegalStateException` if no space is currently available. |
+   | `E`               | `remove()`Retrieves and removes the head of the queue represented by this deque (in other words, the first element of this deque). |
+   | `boolean`         | `remove(Object o)`Removes the first occurrence of the specified element from this deque. |
+   | `E`               | `removeFirst()`Retrieves and removes the first element of this deque. |
+   | `boolean`         | `removeFirstOccurrence(Object o)`Removes the first occurrence of the specified element from this deque. |
+   | `E`               | `removeLast()`Retrieves and removes the last element of this deque. |
+   | `boolean`         | `removeLastOccurrence(Object o)`Removes the last occurrence of the specified element from this deque. |
+   | `int`             | `size()`Returns the number of elements in this deque.        |
+
+7. 优先队列(PriorityQueue)，其底层实现是数组(Array)，其作用是将队列中元素最小值放到堆顶(小顶堆，最小的元素在顶端，也可以通过修改comparator，使之变成大顶堆，最大的元素在顶端)。
+
+   时间复杂度：remove()方法和add()方法的时间复杂度为O(logn)，contains()方法时间复杂度为O(n)，取队头为O(1)。
+
+   PriorityQueue的主要methods包括：
+
+   | Modifier and Type       | Method and Description                                       |
+   | :---------------------- | :----------------------------------------------------------- |
+   | `boolean`               | `add(E e)`Inserts the specified element into this priority queue. |
+   | `void`                  | `clear()`Removes all of the elements from this priority queue. |
+   | `Comparator<? super E>` | `comparator()`Returns the comparator used to order the elements in this queue, or `null` if this queue is sorted according to the [natural ordering](https://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html) of its elements. |
+   | `boolean`               | `contains(Object o)`Returns `true` if this queue contains the specified element. |
+   | `Iterator<E>`           | `iterator()`Returns an iterator over the elements in this queue. |
+   | `boolean`               | `offer(E e)`Inserts the specified element into this priority queue. |
+   | `E`                     | `peek()`Retrieves, but does not remove, the head of this queue, or returns `null` if this queue is empty. |
+   | `E`                     | `poll()`Retrieves and removes the head of this queue, or returns `null` if this queue is empty. |
+   | `boolean`               | `remove(Object o)`Removes a single instance of the specified element from this queue, if it is present. |
+   | `int`                   | `size()`Returns the number of elements in this collection.   |
+   | `Spliterator<E>`        | `spliterator()`Creates a *[late-binding](https://docs.oracle.com/javase/8/docs/api/java/util/Spliterator.html#binding)* and *fail-fast* [`Spliterator`](https://docs.oracle.com/javase/8/docs/api/java/util/Spliterator.html) over the elements in this queue. |
+   | `Object[]`              | `toArray()`Returns an array containing all of the elements in this queue. |
+   | `<T> T[]`               | `toArray(T[] a)`Returns an array containing all of the elements in this queue; the runtime type of the returned array is that of the specified array. |
+
+### 个人总结：
+
+对比老师的做题方法，本人之前的刷题方法确实有问题，死磕的次数比较多，这种方式在学生时期时间多的时候都很难坚持下来，更何况现在工作了，感觉死磕确实浪费精力，容易半途而废，且投入产出不成正比。
+
+在加入算法集中营后，刷题效率确实有所提高，但是因为工作之后很久不学习了的原因，感觉自己的时间利用率并不是很高。由于本周休假，所以大部分题目都争取做到了一遍到两遍，当然也有部分难度大题目不能很好理解，还没有机会做。感觉老师说的题目过变数还是很重要的，以后会花更多时间在题目上。
+
+争取后面的学习中能提高学习效率，以至于在工作忙的时候也能至少坚持现在的进度不掉队。
 
 ## PriorityQueue源码分析：
 
