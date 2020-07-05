@@ -92,7 +92,7 @@ insert(create): O(logN) or O(1)
 
 在JDK 1.8中，HashMap的底层是由“数组+链表+红黑树”组成，而在JDK1.8之前是由“数组+链表”组成。这样做的目的是为了提升在hash冲突严重时（链表过长）的查找性能，使用链表的查找性能是O(n)，而使用红黑树是O(logn)。
 
-![image](https://github.com/rainism0329/algorithm011-class02/blob/master/Week_02/images/put.jpeg)
+![image](https://github.com/rainism0329/algorithm011-class02/blob/master/Week_02/images/structure.jpeg)
 
 ### 什么时候用链表？什么时候用红黑树？
 
@@ -130,7 +130,7 @@ loadFactor：负载因子，扩容阈值 = 容量 * 负载因子。
 
 如果数组中存储的元素达到了阈值(超过负载因子*当前容量)，就要resize（重新调整大小并重新散列）。
 
-![image-20200704154930501](/Users/philipzhang/Library/Application Support/typora-user-images/image-20200704154930501.png)
+![image](https://github.com/rainism0329/algorithm011-class02/blob/master/Week_02/images/put.jpeg)
 
 ### HashMap获取(get)的流程？
 
@@ -144,7 +144,7 @@ loadFactor：负载因子，扩容阈值 = 容量 * 负载因子。
 
 ### HashMap扩容(resize)流程？
 
-![image-20200704155010104](/Users/philipzhang/Library/Application Support/typora-user-images/image-20200704155010104.png)
+![image](https://github.com/rainism0329/algorithm011-class02/blob/master/Week_02/images/resize.jpeg)
 
 ### JDK 1.8的进行了哪些优化？
 
